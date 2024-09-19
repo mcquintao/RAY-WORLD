@@ -1,0 +1,7 @@
+/.vscode
+/CMakeCache.txt
+/CMakeFiles
+/Makefile
+/MyRaylibProject
+/build
+/cmake_install.cmake
