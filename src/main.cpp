@@ -3,10 +3,7 @@
 #include "world.cpp"
 #include "stdio.h"
 
-
-#define SCREEN_WIDTH 500
-#define SCREEN_HEIGHT 500
-
+#include "constants.h"
 
 int main(void)
 {
@@ -28,10 +25,10 @@ int main(void)
 
     while (!WindowShouldClose())
     {
-         
         mousePosition = GetMousePosition();
         int xGrid = (mousePosition.x + camera.target.x - SCREEN_WIDTH/2)/20;
         int yGrid = (mousePosition.y + camera.target.y - SCREEN_HEIGHT/2)/20;
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) world.clickTile(xGrid, yGrid);
 
         cameraMovmentDIrection = Vector2Zero();
         if (IsKeyDown(KEY_LEFT_SHIFT)) cameraSpeedMulti = 2;
@@ -46,11 +43,9 @@ int main(void)
         cameraMovmentDIrection = Vector2Scale(cameraMovmentDIrection, cameraSpeed * cameraSpeedMulti * GetFrameTime());
 
         camera.target = Vector2Add(camera.target, cameraMovmentDIrection);
+      
+        //printf("X: %d, Y: %d\n", xGrid, yGrid);
         
-
-
-      //  printf("X: %d, Y: %d\n", xGrid, yGrid);
-
 
         BeginDrawing();
         ClearBackground(RAYWHITE);
